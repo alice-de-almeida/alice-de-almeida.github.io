@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+    <style>
+      body {
+        font-size:  20pt;
+        font-family: sans-serif;
+        margin-left: 10%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <br>
+    <label for="investimento">Qual o valor investido nos anúncios, em reais? (Ex.: 50)</label>
+    <br>
+    <input type="number" id="Investimento" name="Investimento">
+    <button>Calcule as visualizações</button>
+  </body>
+
+  <script>        
+      var investimento = document.getElementById("Investimento");
+      console.log(investimento.value);
+
+      var button = document.querySelector("button");
+
+      function calcula() {
+
+        // a cada R$1,00 investido, 30 pessoas visualizam o anúncio original
+        var visualizamAnuncio = investimento.value * 30;
+            
+            
+          // Cada anúncio é compartilhado no máximo 4 vezes em sequência 
+          for(contador = 0; contador < 4; contador++) {
+              
+            // 12% das pessoas que visualizam os anúncios clicam nele
+            var clicam = 0.12 * visualizamAnuncio;
+          
+            // 15% das pessoas que clicam no anúncio o compartilham
+            var compartilhamentos = 0.15 * clicam;
+
+            // Cada compartilhamento gera 40 novas visualizações
+            var novasVisualizacoes = 40 * compartilhamentos;
+
+            // Atualização das pessoas que visualizam o anúncio 
+            var visualizamAnuncio = visualizamAnuncio + novasVisualizacoes; 
+
+          }  
+
+          alert("Quantidade máxima de pessoas que visualizarão o anúncio: " + Math.floor(visualizamAnuncio));
+        }
+
+        button.onclick = calcula;
+    </script>
+</html>
